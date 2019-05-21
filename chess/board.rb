@@ -1,4 +1,5 @@
 require_relative "piece.rb"
+require "byebug"
 class Board
 
   def initialize
@@ -35,12 +36,13 @@ class Board
     elsif end_pos[0] < 0 || end_pos[1] < 0 || end_pos[0] > 7 || end_pos[1] > 7 
       raise "invalid end position!"
     end
-    @grid[end_pos[0]][end_pos[1]] = self[start_pos]
-    @grid[start_pos[0]][start_pos[1]] = nil
+   # @grid[end_pos[0]][end_pos[1]] = self[start_pos]
+   self[end_pos] = self[start_pos]
+   self[start_pos] = nil
   end
-
-  def []=(pos)
-    @grid[pos[0]][pos[1]]
+  
+  def []=(pos, val)
+    @grid[pos[0]][pos[1]] = val
   end
 
   def [](pos)
